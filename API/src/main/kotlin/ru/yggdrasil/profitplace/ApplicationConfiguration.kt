@@ -7,6 +7,11 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.yggdrasil.profitplace.services.PlacesApiService
 import ru.yggdrasil.profitplace.services.RentalOffersApiService
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import javax.swing.text.html.HTML.Tag.BODY
+
+
 
 
 @Configuration
@@ -23,9 +28,15 @@ class ApplicationConfiguration {
     }
 
     private fun getRetrofit(baseUrl: String): Retrofit {
+        val logging = HttpLoggingInterceptor()
+        logging.level = HttpLoggingInterceptor.Level.BODY
+        val httpClient = OkHttpClient.Builder()
+        httpClient.addInterceptor(logging)
+
         return Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient.build())
                 .baseUrl(baseUrl)
                 .build()
     }

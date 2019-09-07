@@ -19,9 +19,16 @@ class RentalOffersServiceImpl : RentalOffersService {
         }
 
         return response.body()!!.data
-                .filter { it.params.area >= minSpace }
+                .filter {
+                    if(!it.params.containsKey("Площадь")){
+                        return@filter false
+                    }
+
+                    val space = it.params["Площадь"]?.toDoubleOrNull()
+                    return@filter space != null && space >= minSpace
+                }
                 .map {
-                    RentalOffer(getCoordinates(it.coords), "${it.city}, ${it.address}", it.price, it.params.area, it.url)
+                    RentalOffer(getCoordinates(it.coords), "${it.city}, ${it.address}", it.price, it.params["Площадь"]!!.toDouble(), it.url)
                 }
     }
 

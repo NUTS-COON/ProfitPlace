@@ -1,8 +1,9 @@
 package ru.yggdrasil.profitplace.services
 
-import ru.yggdrasil.profitplace.models.Zone
+import ru.yggdrasil.profitplace.models.Coordinates
 
 interface PlacesService {
-    fun getNearbyCafeCount(zone: Zone): Int
-    fun getNearbyBusStopCount(zone: Zone): Int
+    fun getNearbyCafeCount(coordinates: Coordinates): Int
+    fun getNearbyGoingOutPlacesCount(coordinates: Coordinates): Int
+    fun getNearbyBusStopCount(coordinates: Coordinates): Int
 }

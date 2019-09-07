@@ -1,5 +1,13 @@
 package ru.yggdrasil.profitplace.models.rentalApi
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonIgnoreType
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.google.gson.internal.LinkedTreeMap
+import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class Data(
         val address: String,
         val avitoid: String,
@@ -25,7 +33,7 @@ data class Data(
         val param_4887: String,
         val param_4920: Double,
         val param_4922: String,
-        val params: Params,
+        val params: LinkedTreeMap<String, String>,
         val person: String,
         val person_type: String,
         val person_type_id: Int,

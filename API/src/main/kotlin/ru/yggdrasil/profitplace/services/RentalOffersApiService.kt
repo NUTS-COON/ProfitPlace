@@ -7,7 +7,7 @@ import ru.yggdrasil.profitplace.models.rentalApi.RentalOffersResponse
 
 interface RentalOffersApiService {
 
-    @GET("main/api?user=mburavczov@bk.ru&token=9aa47f71e765cef10278d1803ce957a8")
+    @GET("main/api?user=mburavczov@bk.ru&token=9aa47f71e765cef10278d1803ce957a8&withcoords=1")
     fun getRentalOffers(
             @Query("category_id") categoryId: Int,
             @Query("city") city: String,

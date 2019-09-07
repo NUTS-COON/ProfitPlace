@@ -36,6 +36,7 @@ dependencies {
 	implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
 	implementation("com.squareup.retrofit2:converter-simplexml:$retrofitVersion")
 	implementation ("com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion")
+	implementation("com.squareup.okhttp3:logging-interceptor:3.8.0")
 
 	implementation("io.springfox:springfox-swagger2:$swaggerVersion")
 	implementation("io.springfox:springfox-swagger-ui:$swaggerVersion")

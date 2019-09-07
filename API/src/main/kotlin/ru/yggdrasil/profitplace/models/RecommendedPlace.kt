@@ -6,6 +6,9 @@ data class RecommendedPlace(
         val price: Int,
         val space: Double,
         val rating: Double,
+        val numberOfCompetitors: Int,
+        val numberOfBusStop: Int,
+        val numberOfInterestingPlaces: Int,
         val offerUrl: String
 )
 
