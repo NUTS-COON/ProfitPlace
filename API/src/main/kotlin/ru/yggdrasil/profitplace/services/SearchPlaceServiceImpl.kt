@@ -83,14 +83,14 @@ class SearchPlaceServiceImpl : SearchPlaceService {
     private fun getDistance(lat1: Double, lng1: Double, lat2: Double, lng2: Double): Double{
         val earthRadiusKm = 6371000
 
-        val dLat = degreesToRadians(lat2-lat1);
-        val dLon = degreesToRadians(lng2-lng1);
+        val dLat = degreesToRadians(lat2-lat1)
+        val dLon = degreesToRadians(lng2-lng1)
 
         val newLat1 = degreesToRadians(lat1)
         val newLat2 = degreesToRadians(lat2)
 
         val a = sin(dLat/2) * sin(dLat/2) +
-                sin(dLon/2) * sin(dLon/2) * cos(newLat1) * cos(newLat2);
+                sin(dLon/2) * sin(dLon/2) * cos(newLat1) * cos(newLat2)
         val c = 2 * atan2(sqrt(a), sqrt(1-a))
         return earthRadiusKm * c
     }

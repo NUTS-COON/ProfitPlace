@@ -12,7 +12,7 @@ import ru.yggdrasil.profitplace.models.ThermalPoint
 import ru.yggdrasil.profitplace.services.DetailAnalyzeService
 import ru.yggdrasil.profitplace.services.SearchPlaceService
 
-@CrossOrigin(origins = arrayOf("*"), allowedHeaders = arrayOf("*"))
+@CrossOrigin(origins = ["*"], allowedHeaders = ["*"])
 @RestController("api")
 class ApiController {
 

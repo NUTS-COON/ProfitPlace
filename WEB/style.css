@@ -1,0 +1,169 @@
+
+body {
+	background-color: #403e3e;
+	font-family: 'PT Sans', sans-serif;
+	color: white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Oswald', sans-serif;
+	color: white;
+}
+
+#headerwrap {
+    background: url('landing-bg.png');
+}
+
+#headerwrap {
+
+}
+
+#mapContainer {
+    width: 100%;
+    left: 0;
+    height:500px;
+}
+
+.phone {
+    font-size: smaller;
+}
+
+.lead {
+	font-family: 'PT Sans', sans-serif;
+}
+
+.navbar {
+	border: 1px solid white;
+}
+
+.nav-item {
+	border: 1px solid white;
+}
+
+.logo-main {
+	width: 8em;
+	height: 8em;
+	border-radius: .5em;
+	background: red;
+	margin: auto;
+	display:block;
+	margin-top: 2em;
+	margin-bottom: -3em;
+	align-content: center;
+}
+
+.headerwrap-icon {
+	width:6em;
+	height: 6em;
+	border-radius: 4em;
+	background: red;
+	margin: auto;
+	display: block;
+}
+
+.navbar-brand {
+	font-family: 'Oswald', sans-serif;
+}
+
+.mybutton {
+	font-family: 'Oswald', sans-serif;
+    margin: 8px;
+    background-color: #eae7ec;
+    border: none;
+	box-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    border-radius: .5em;
+    position: relative;
+    padding: 6px;
+	font-size:large;
+	-webkit-transition: all 0.25s ease;;
+	-moz-transition: all 0.25s ease;;
+	-o-transition: all 0.25s ease;;
+	transition: all 0.25s ease;
+}
+
+.mybutton:hover {
+	box-shadow: 0 1px 4px rgba(0,0,0,0.6);
+	top: 1px;
+	background-color: #d8d0dc;
+}
+
+.mybutton:active {
+    background-color: #cabecf;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.7);
+	top: 3px;
+}
+
+.button-search {
+	font-size: x-large;
+	padding: 12px;
+	width: 40%;
+}
+
+.button-filter {
+	font-family: 'PT Sans', sans-serif;
+	font-size:medium;
+	padding: 4px;
+	margin: 4px;
+	width: 15em;
+}
+
+#button-forw, #button-back {
+	margin-left: 0;
+	margin-right: 0;
+	width: 48%;
+}
+
+#map_surr {
+    height: 500px;
+}
+
+#button-forw {
+	border-radius: 0 0.7em 0.7em 0;
+}
+
+#button-back {
+	border-radius: 0.7em 0 0 0.7em;
+}
+
+.navbar-map {
+    background-color: #eae7ec; 
+}
+
+.address {
+
+}
+
+.space, .class, .phone {
+
+}
+
+.par-name {
+	font-style: bold;
+    font-family: 'Oswald', sans-serif;
+    font-size: larger;
+}
+
+.rating-name {
+	font-style: bold;
+    font-family: 'Oswald', sans-serif;
+    font-size: larger;
+}   
+
+#f {
+    background: #2d2d2d;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-radius: .5em .5em 0 0;
+}
+
+#f i {
+    color: #bdbdbd;
+    font-size: 30px;
+    padding: 20px;
+}
+
+#f i:hover {
+    color: #787878;
+}
+
+.col, .col-sm-auto,.col-12, .col-4 { border: 1px solid transparent; text-align: center;}

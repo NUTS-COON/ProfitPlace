@@ -1,5 +1,7 @@
 package ru.yggdrasil.profitplace
 
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import retrofit2.Retrofit
@@ -7,9 +9,6 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.yggdrasil.profitplace.services.PlacesApiService
 import ru.yggdrasil.profitplace.services.RentalOffersApiService
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import javax.swing.text.html.HTML.Tag.BODY
 
 @Configuration
 class ApplicationConfiguration {
