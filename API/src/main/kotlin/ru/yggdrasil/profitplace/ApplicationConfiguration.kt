@@ -11,9 +11,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import javax.swing.text.html.HTML.Tag.BODY
 
-
-
-
 @Configuration
 class ApplicationConfiguration {
 

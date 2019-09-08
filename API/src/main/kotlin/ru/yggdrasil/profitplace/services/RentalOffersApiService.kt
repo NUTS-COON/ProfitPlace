@@ -13,5 +13,5 @@ interface RentalOffersApiService {
             @Query("city") city: String,
             @Query("date1") dateFrom: String,
             @Query("price2") maxPrice: Int,
-            @Query("nedvigimost_type") offerType: Int): Call<RentalOffersResponse>
+            @Query("nedvigimost_type") offerType: Int): Call<RentalOffersResponse?>
 }
