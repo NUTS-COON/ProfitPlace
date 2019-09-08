@@ -18,7 +18,7 @@ var seekbar_cost = new Seekbar.Seekbar({
 var seekbar_space = new Seekbar.Seekbar({
         renderTo: "#seekbar-space",
         valueListener: function (value) {
-        	document.getElementById('space-value').innerHTML = Math.round(value)+' М<sup>2</sup>';
+       		document.getElementById('space-value').innerHTML = Math.round(value)+' М<sup>2</sup>';
         },
 
         thumbColor: '#ccff0000',
@@ -28,76 +28,25 @@ var seekbar_space = new Seekbar.Seekbar({
         thumbSize: 1,
         needleSize: 0.2,
         minValue: 1,
-        maxValue: 100,
+        maxValue: 1000,
         value: 20
-    });
-
-var ratingbar_a = new Seekbar.Seekbar({
-        renderTo: "#ratingbar-a",
-        valueListener: function (value) {
-        	document.getElementById('space-value').innerHTML = Math.round(value)+' М<sup>2</sup>';
-        },
-
-        thumbColor: '#ccff0000',
-        negativeColor: '#ff0000',
-        positiveColor: '#CCC',
-        barSize: 3,
-        thumbSize: 1,
-        needleSize: 0.2,
-        minValue: 1,
-        maxValue: 9,
-        value: 10
-    });
-
-
-var ratingbar_b = new Seekbar.Seekbar({
-        renderTo: "#ratingbar-b",
-        valueListener: function (value) {
-        	document.getElementById('space-value').innerHTML = Math.round(value)+' М<sup>2</sup>';
-        },
-
-        thumbColor: '#ccff0000',
-        negativeColor: '#ff0000',
-        positiveColor: '#CCC',
-        barSize: 3,
-        thumbSize: 1,
-        needleSize: 0.2,
-        minValue: 1,
-        maxValue: 9,
-        value: 10
-    });
-
-
-var ratingbar_c = new Seekbar.Seekbar({
-        renderTo: "#ratingbar-c",
-        valueListener: function (value) {
-        	document.getElementById('space-value').innerHTML = Math.round(value)+' М<sup>2</sup>';
-        },
-
-        thumbColor: '#ccff0000',
-        negativeColor: '#ff0000',
-        positiveColor: '#CCC',
-        barSize: 3,
-        thumbSize: 1,
-        needleSize: 0.2,
-        minValue: 1,
-        maxValue: 9,
-        value: 10
     });
  
 var business_types = ["Cafe", "Shop", ""];
 var selected_type  = business_types[0];
 
 function setup() {
+	document.getElementById('map_surr_wrap').style.opacity = 0;
+
     map = L.map('mapContainer').setView([45.0448400, 38.9760300], 13);
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		attribution: '<span style="font-size:large">© <a href="https://www.mapbox.com/">HERE</a></span>',
 		maxZoom: 18,
 		id: 'mapbox.streets',
 		accessToken: 'pk.eyJ1IjoiZXBweTEiLCJhIjoiY2p0dGUzZ3dlMHRlNDRkbW01NnRrcWliOCJ9.-veJzgAvXB_SAGWwE-Ylew'
 	}).addTo(map);
 
-	setCurrentParams('Baker street 221b', '9999', '13', '88005553535', 2, 1, 2, 3);
+	//setCurrentParams('Baker street 221b', '9999', '13', '88005553535', 2, 1, 2, 3);
 }
 
 function setElemValue(element, value) {
@@ -114,6 +63,8 @@ function fixAddress(address) {
 }
 
 function setCurrentParams(address, price, space, phone, rating_total, rating_a, rating_b, rating_c) {
+	document.getElementById('map_surr_wrap').style.opacity = 1;
+	
 	document.getElementById('result-address').innerHTML = fixAddress(address);
 	document.getElementById('result-price').innerHTML = price + '₽';
 	document.getElementById('result-space').innerHTML = space + ' М<sup>2</sup>';
@@ -133,17 +84,35 @@ var current_point = -1;
 function updateMarkers() {
 	console.log(results[0].coords);
 	for(var i=0; i<results.length; i++) {
-		markers.push(
-			L.marker([results[i].coords.latitude, results[i].coords.longitude]).addTo(map)
-	    	.bindPopup('<b>'+results[i].address+'</b><br>'+
-	    	results[i].price+'₽<br>'+results[i].space+
-	    	' М<sup>2</sup><br>'+'<b>'+results[i].rating+'<b>'));
+		var marker = L.marker([results[i].coords.latitude, results[i].coords.longitude]).addTo(map)
+		.bindPopup('<b>'+results[i].address+'</b><br>'+
+		results[i].price+'₽<br>'+results[i].space+
+		' М<sup>2</sup><br>'+'<b>'+results[i].rating+'<b>')
+		
+
+		let I = i
+
+		marker.on("click", function(e) {
+			//requestDetailInfo(results[i].coords.latitude, results[i].coords.longitude);
+			
+			current_point = I;
+			acceptResults();
+			markers[current_point].openPopup();
+			document.getElementById('rating-detail').style.transform = "scaleX(0)";
+		})
+		
+		markers.push(marker);
 	}
 	markers[current_point].openPopup();
 }
 
 
 function acceptResults() {
+
+	if(results[current_point] == undefined) {
+		return;
+	}
+
 	setCurrentParams(
 		results[current_point].address,
 		results[current_point].price,
@@ -163,12 +132,14 @@ function startSearch() {
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-Type", "application/json");
 	xhr.onreadystatechange = function () {
-	    var json = JSON.parse(xhr.responseText);
-	    results = json;
-	    //console.log(results);
-	    current_point = 0;
-	    acceptResults(json);
-	    updateMarkers();
+		if(xhr.responseText != ""){
+			var json = JSON.parse(xhr.responseText);
+			results = json;
+			//console.log(results);
+			current_point = 0;
+			acceptResults(json);
+			updateMarkers();
+		}
 	};
 
 	var r = 0.5 * 6378137 * (map.getBounds().getEast() * Math.PI / 180 - map.getBounds().getWest() * Math.PI / 180);
@@ -185,16 +156,19 @@ function startSearch() {
 	xhr.send(JSON.stringify(t));
 }
 
+var heat = undefined;
+
 function makeHeatMap(pts) {
     var arr = []
 
     for(var i=0; i<pts.length; i++) {
         arr.push([pts[i].latitude, pts[i].longitude, pts[i].weight])
+        arr.push([pts[i].latitude, pts[i].longitude, pts[i].weight])
     }
 
-    console.log(arr)
-
-    var heat = L.heatLayer(arr, {radius: 25}).addTo(map);
+    //console.log(arr)
+	if(heat != undefined) map.removeLayer(heat);
+    heat = L.heatLayer(arr, {radius: 25}).addTo(map);
 }
 
 function requestDetailInfo(lat1, len1) {
@@ -203,8 +177,10 @@ function requestDetailInfo(lat1, len1) {
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-Type", "application/json");
 	xhr.onreadystatechange = function () {
-        var json = JSON.parse(xhr.responseText);
-	    makeHeatMap(json);
+		if(xhr.responseText != ""){
+			var json = JSON.parse(xhr.responseText);
+			makeHeatMap(json);
+		}
     };
     
 	var t = {
@@ -219,13 +195,19 @@ function prevResult() {
 	current_point = Math.abs((current_point-1)%results.length);
 	acceptResults();
 	markers[current_point].openPopup();
+	document.getElementById('rating-detail').style.transform = "scaleX(0)";
+}
+
+function showDetail() {
+	document.getElementById('rating-detail').style.transform = "scaleX(1)";
+    requestDetailInfo(results[current_point].coords.latitude, results[current_point].coords.longitude);
 }
 
 function nextResult() {
 	current_point = Math.abs((current_point+1)%results.length);
 	acceptResults();
     markers[current_point].openPopup();
-    requestDetailInfo(results[current_point].coords.latitude, results[current_point].coords.longitude);
+	document.getElementById('rating-detail').style.transform = "scaleX(0)";
 }
 
 window.onload = setup;

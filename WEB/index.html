@@ -98,16 +98,19 @@
       <div class="col">
         <p><h5>Тип бизнеса:</h5><br>
         <button class="mybutton button-filter" id="button-filter-cafe">Кафе</button><br>
+        (Позже добавятся другие варианты)
+        <!--
         <button class="mybutton button-filter" id="button-filter-cafe">Магаз</button><br>
         <button class="mybutton button-filter" id="button-filter-cafe">Аптека</button><br>
+      -->
       </div>
       <div class="col">
-        <p><h5>Стоимость аренды:</h5>
+        <p><h5>Максимальная стоимость аренды:</h5>
         <div id="seekbar-cost" style="display:block; margin:auto; width:16em;height:1em"></div>
         <div class="col" id="cost-value">100 000&#8381;</div> 
       </div>
       <div class="col">
-        <p><h5>Площадь помещения:</h5>
+        <p><h5>Минимальная площадь помещения:</h5>
         <div id="seekbar-space" style="display:block; margin:auto; width:16em;height:1em"></div>
         <div class="col" id="space-value">50 м<sup>2</sup></div>
       </div>
@@ -121,46 +124,52 @@
       </div>
   </div>
 
-  <div class="container" id="map_surr"> 
+  <div class="container" id="map_surr">  
     <div class="row centered">
       <div class="col-9">
         <div id="mapContainer"></div>
       </div>
 
-      <div class="col-3" class="navbar-map">
-        <h3 id="result-address" class="address">Тихвинская улица, д.7</h3>
-        <span class="par-name">Площадь:&nbsp;</span>
-        <span id="result-space" class="space">100 М<sup>2</sup></span><br>
+
+        <div class="col-3" class="navbar-map">
+            <div id="map_surr_wrap">
+          <h3 id="result-address" class="address">Тихвинская улица, д.7</h3>
+          <span class="par-name">Площадь:&nbsp;</span>
+          <span id="result-space" class="space">100 М<sup>2</sup></span><br>
 
 
-        <span class="par-name">Аренда:&nbsp;</span>
-        <span id="result-price" class="price">100 000₽</span><br>
+          <span class="par-name">Аренда:&nbsp;</span>
+          <span id="result-price" class="price">100 000₽</span><br>
 
 
-        <span class="par-name">Телефон:&nbsp;</span>
-        <span id="result-phone" class="phone">+7(977)5090197</span><br>
+          <span class="par-name">Телефон:&nbsp;</span>
+          <span id="result-phone" class="phone">+7(977)5090197</span><br>
 
-        <div class="progress-circle over50 p70" stle="align:center;">
-           <span id="rating-total">7</span>
-           <div class="left-half-clipper">
-              <div class="first50-bar"></div>
-              <div class="value-bar"></div>
-           </div>
+          <div class="progress-circle over50 p70" stle="align:center;">
+            <span id="rating-total">7</span>
+            <div class="left-half-clipper">
+                <div class="first50-bar"></div>
+                <div class="value-bar"></div>
+            </div>
+          </div>
+
+          <button class="mybutton" id="button-detail" onclick="showDetail();">Детальный анализ</button>
+          <div style="height: 8em">
+            <div id="rating-detail" style="right:0; position:relative; transform: scaleX(0);">
+              <span class="rating-name">Конкуренты:&#9;&#9;</span> <span id="rating-a">10</span><br>
+
+              <span class="rating-name">Транспорт:&#9;</span> <span id="rating-b">8</span><br>
+
+              <span class="rating-name">Места интереса:&#9;</span> <span id="rating-c">9</span><br>
+            </div>
+          </div>
+            <button class="mybutton" id="button-back" onclick="prevResult()">Назад</button>
+            <button class="mybutton" id="button-forw" onclick="nextResult()">Далее</button>
         </div>
-
-        <div id="rating-detail" class="col-9">
-          <p><span class="rating-name">Конкуренты:&#9;&#9;</span> <span id="rating-a">10</span><br>
-
-          <p><span class="rating-name">Транспорт:&#9;</span> <span id="rating-b">8</span><br>
-
-          <p><span class="rating-name">Места интереса:&#9;</span> <span id="rating-c">9</span><br>
-
-          <button class="mybutton" id="button-back" onclick="prevResult()">Назад</button>
-          <button class="mybutton" id="button-forw" onclick="nextResult()">Далее</button>
-        </div>
-
       </div>
   </div>
+
+  <br><br><br>
 
   <div id="f">
     <div class="container">
@@ -172,7 +181,7 @@
       </div>
     </div>
   </div>
-
+  
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.slim.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
