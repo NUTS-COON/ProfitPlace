@@ -1,21 +1,29 @@
 
 body {
-	background-color: #403e3e;
 	font-family: 'PT Sans', sans-serif;
+	color: black;
+}
+
+h5 {
+	font-family: 'Oswald', sans-serif;
+	color: black;
+}
+
+h1, h2, h3, h4, h6 {
+	font-family: 'Oswald', sans-serif;
 	color: white;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'Oswald', sans-serif;
-	color: white;
+#headerwrap h1, h3, p{	
+	color: black;
 }
 
 #headerwrap {
     background: url('landing-bg.png');
 }
 
-#headerwrap {
-
+.mt20{
+	margin-top: 20px;
 }
 
 #mapContainer {
@@ -44,7 +52,6 @@ h1, h2, h3, h4, h5, h6 {
 	width: 8em;
 	height: 8em;
 	border-radius: .5em;
-	background: red;
 	margin: auto;
 	display:block;
 	margin-top: 2em;
@@ -56,9 +63,13 @@ h1, h2, h3, h4, h5, h6 {
 	width:6em;
 	height: 6em;
 	border-radius: 4em;
-	background: red;
 	margin: auto;
 	display: block;
+}
+
+.features{
+	font-size: 20px;
+	font-weight: bold;
 }
 
 .navbar-brand {
@@ -127,14 +138,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-map {
     background-color: #eae7ec; 
-}
-
-.address {
-
-}
-
-.space, .class, .phone {
-
 }
 
 .par-name {
